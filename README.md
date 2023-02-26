@@ -193,16 +193,19 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 
 ### I/O
 
-| address | size | device                       |
-| ------- | ---- | ---------------------------- |
-| 0x81    |      | Bank switching?              |
-| 0x83    |      |                              |
-| 0xA0    | 2    | CRTC internal registers      |
-| 0xB0    | 4    | SIO/2 Serial Peripheral      |
-| 0xC0    |      | FDC - floppy disk controller |
-| 0xD5    | 0    | Speaker                      |
-| 0xD6    |      |                              |
-| 0xE0    | 4    | CTC Timer                    |
+| address | size  | device                       |
+| ------- | ----- | ---------------------------- |
+| 0x81    |       | GPIO - Bank switching?       |
+| 0x82    |       | GPIO                         |
+| 0x83    |       | GPIO                         |
+| 0xA0    | 2     | CRTC internal registers      |
+| 0xB0    | 4     | SIO/2 Serial Peripheral      |
+| 0xC0    |       | FDC - floppy disk controller |
+| 0xD6    |       |                              |
+| 0xDA    | 1 (2) | Speaker                      |
+| 0xDC    |       |                              |
+| 0xDE    |       |                              |
+| 0xE0    | 4     | CTC Timer                    |
 
 ## CRT Display
 
