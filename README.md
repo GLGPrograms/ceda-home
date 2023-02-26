@@ -22,6 +22,7 @@ A collection of resources we managed to put together.
   - [ROM](#rom)
   - [Memory map](#memory-map)
   - [CRT Display](#crt-display)
+  - [Floppy drive](pages/floppy-drive.md)
 - Other repositories:
   - [Emulator](https://git.giomba.it/giomba/ceda-emu): actually you don't have a Sanco, but you want to try it anyway on your modern PC.
   - [Keyboard protocol](https://github.com/RetroNewbie/Sanco_8000): you don't have a keyboard, but you want to build your one: now you can!
