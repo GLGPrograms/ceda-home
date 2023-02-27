@@ -15,7 +15,7 @@ The Sanco uses a 98 keys keyboard connected through an 8 pin DIN connector.
 
 ## Protocol
 
-The keyboard comunicate with the computer using UART with TTL logic levels (5v/0v) with a 1200 8N1 configuration.
+The keyboard comunicate with the computer using **UART with TTL logic levels (5v/0v)** with a **1200 8N1 configuration**.
 
 :warning: In this document all the values will be interpreted as having the least significant byte first. :warning:
 
