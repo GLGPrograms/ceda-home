@@ -15,14 +15,7 @@ The Sanco uses a 98 keys keyboard connected through an 8 pin DIN connector.
 
 ## Protocol
 
-The keyboard comunicate with the computer using UART with TTL logic levels (5v/0v) with the following configuration:
-
-| Field | Value |
-|:-----:|:-----:|
-|Baud Rate | 1200|
-|Parity Bit | None |
-|Data bits | 8 |
-|Stop bits | 2 (?) |
+The keyboard comunicate with the computer using UART with TTL logic levels (5v/0v) with a 1200 8N1 configuration.
 
 :warning: In this document all the values will be interpreted as having the least significant byte first. :warning:
 
@@ -33,7 +26,7 @@ The keyboard comunicate with the computer using UART with TTL logic levels (5v/0
 </figure>
 
 Everytime a key is pressed two bytes of data are sent to the computer. The first byte represents the key that was pressed. The second byte contains flags for CTRL,ALT,CAPS and SHIFT.
-The flag byte is sent ~1ms after the key byte (assuming 2 stop bits). 
+The flag byte is sent ~2ms after the key byte (assuming 1 stop bits). 
 
 #### Key byte
 
