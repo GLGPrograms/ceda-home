@@ -6,9 +6,12 @@ Aim of this page is to collect as much information as possible about this comput
 
 Project codename is *ceda* (see below).
 
-We are open to external contributions, and your authorship will be guaranteed via git.
-
 :warning: We make our best effort to document what we find, but everything that you read here must be taken with extreme care! You may harm your computer or harm yourself if you are not aware of what you are doing, or if there are some errors in this document. :warning:
+
+## License
+
+The documentation in this repository is release under the terms of Creative Commons 4.0 Attribution (SPDX: CC-BY-4.0).
+We are open to external contributions. If you contribute, you implicitly release your work under the mentioned license. Your authorship will be guaranteed by git.
 
 ## Resources
 
