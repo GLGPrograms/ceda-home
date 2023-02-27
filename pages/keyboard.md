@@ -80,146 +80,20 @@ The other pins are unused.
 
 ## Key map
 
-Here they keys are mapped with the corresponding byte that is sent by the keyboard. The keys are listed by row from left to right. Note that the keypad and arrows are seprarated from the rows.
+Here they keys are mapped with the corresponding byte that is sent by the keyboard. The keys are listed following the real layout of the keyboard.When the same key is repeated twice on the keypad the keypad one is referred to as {key}_K. 
+
+Also note that some keys are repeated to represent bigger keys (see [here](#images) for reference).
+
+|   |c0|c1|c2|c3|c4|c5|c6|c7|c8|c9|c10|c11|c12|c13|c14|c15|c16|c17|c18|c19|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|r0|BOOT  ```4D``` | F1<br />  ```4E``` | F2  ```4F``` | F3  ```50``` | F4  ```51``` | F5  ```52``` | F6  ```53``` | F7  ```54``` | F8  ```55``` | F9  ```56``` | F10  ```57``` | F11  ```58``` | F12  ```59``` | F13<br /> ```5A``` | F14<br />  ```5B``` | F15<br /> ```5C``` | UP ```3A``` | DOWN ```3B``` | LEFT ```3C``` | RIGHT ```3D``` |
+|r1|ESC ```01``` | <<br /> ```02``` | 1<br /> ```03``` | 2 ```04``` | 3 ```05``` | 4 ```06``` | 5<br /> ```07``` | 6 ```08``` | 7 ```09``` | 8 ```0A``` | 9 ```0B``` | 0 ```0C``` | \#<br /> ```0D``` | @<br /> ```0E``` | DEL<br /> ```0F``` | ^<br /> ```10``` | 7_K ```3E``` | 8_K ```3F``` |  9_K ```40``` | CE ```41``` |
+|r2|BREAK ```11``` | TAB ```12``` | A ```13``` | Z ```14``` | E ```15``` | R ```16``` | T<br /> ```17``` | Y ```18``` | U ```19``` | I ```1A``` | O ```1B``` | P ```1C``` | \><br /> ```1D``` | . .<br /> ```1E``` |RETURN ```2B``` | }<br /> ```1F``` | 4_K ```42``` | 5_K ```43``` | 6_K ```44``` | -<br /> ```45``` |
+r3|CAPS-LOCK ```60``` | SHIFT-LOCK ```65``` | Q ```20``` | S ```21``` | D ```22``` | F ```23``` | G<br /> ```24``` | H ```25``` | J ```26``` | K ```27``` | L ```28``` | M ```29``` | %<br /> ```2A``` | RETURN ```2B``` |RETURN ```2B``` | {<br /> ```2C``` | 1_K<br /> ```46``` | 2_K ```47``` | 3_K<br /> ```48``` | ENTER ```4C``` |
+r4|CAN ```2D``` | LEFT-SHIFT ```63``` | LEFT-SHIFT ```63``` | W ```2E``` | X ```2F``` | C ```30``` | V<br /> ```31``` | B<br /> ```32``` | N ```33``` | / ```34``` | . ```35``` | \- ```36``` | \+ ```37``` | RIGHT-SHIFT ```64``` | RIGHT-SHIFT ```64``` | LINE FEED ```38``` || ._K ```49``` | 0_K ```4A``` | 00 ```4B``` | ENTER ```4C``` |
+r5||CTRL ```61``` ||||| SPACE ```39``` ||||| ALT ```62``` |
 
 
-#### Function keys:
-
-| KEY | CODE |
-|:-:|:-:|
-BOOT | 4D
-F1 |  4E
-F2 |  4F
-F3 |  50
-F4 |  51
-F5 |  52
-F6 |  53
-F7 |  54
-F8 |  55
-F9 |  56
-F10 |  57
-F11 |  58
-F12 |  59
-F13 |  5A
-F14 |  5B
-F15 |  5C
-
-#### First row:
-
-| KEY | CODE |
-|:-:|:-:|
-ESC |  01
-< |  02
-1 |  03
-2 |  04
-3 |  05
-4 |  06
-5 |  07
-6 |  08
-7 |  09
-8 |  0A
-9 |  0B
-0 |  0C
-\# |  0D
-@ |  0E
-DEL |  0F
-^ |  10
-
-#### Second row:
-
-| KEY | CODE |
-|:-:|:-:|
-BREAK |  11
-TAB |  12
-A |  13
-Z |  14
-E |  15
-R |  16
-T |  17
-Y |  18
-U |  19
-I |  1A
-O |  1B
-P |  1C
-\> |  1D
-. . |  1E
-} |  1F
-
-#### Third row:
-
-| KEY | CODE |
-|:-:|:-:|
-CAPS-LOCK | 60
-SHIFT-LOCK | 65
-Q |  20
-S |  21
-D |  22
-F |  23
-G |  24
-H |  25
-J |  26
-K |  27
-L |  28
-M |  29
-% |  2A
-ENTER |  2B
-{ |  2C
-
-#### Fifth row:
-
-| KEY | CODE |
-|:-:|:-:|
-CAN |  2D
-LEFT-SHIFT |  63
-RIGHT-SHIFT | 64
-W |  2E
-X |  2F
-C |  30
-V |  31
-B |  32
-N |  33
-/ |  34
-. |  35
-\- |  36
-\+ |  37
-LINE_FEED |  38
-
-#### Sixth row:
-
-| KEY | CODE |
-|:-:|:-:|
-CTRL | 61
-SPACE | 39
-ALT | 62
-
-#### Arrows:
-
-| KEY | CODE |
-|:-:|:-:|
-UP | 3A
-DOWN | 3B
-LEFT | 3C 
-RIGHT | 3D
-
-#### Keypad:
-
-| KEY | CODE |
-|:-:|:-:|
-7 |  3E
-8 |  3F
-9 |  40
-CE |  41
-4 |  42
-5 |  43
-6 |  44
-\- |  45
-1 |  46
-2 |  47
-3 |  48
-. |  49
-0 |  4A
-00 |  4B
-ENTER |  4C
 
 ## Images
 
