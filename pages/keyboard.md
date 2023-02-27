@@ -13,7 +13,6 @@ The Sanco uses a 98 keys keyboard connected through an 8 pin DIN connector.
 - [Images](#images)
 
 
-<a id="protocol"></a>
 ## Protocol
 
 The keyboard comunicate with the computer using UART with TTL logic levels (5v/0v) with the following configuration:
@@ -67,7 +66,6 @@ The keyboard also receives data from the computer. The data consist of a single 
 
 The only signal that is documented at the moment is the byte (0x12) that is sent after  reset/boot to signal to the keyboard that the light of the BOOT key should light up.
 
-<a id="connector"></a>
 ## Connector
 
 The keyboard uses an 8pin DIN connector with the following configuration :
@@ -86,8 +84,6 @@ Pinout of the **male** connector:
 | 8   | White,Black | GND
 
 The other pins are unused.
-
-<a id="key-map"></a>
 
 ## Key map
 
@@ -232,7 +228,6 @@ CE |  41
 00 |  4B
 ENTER |  4C
 
-<a id="images"></a>
 ## Images
 
 <figure>
