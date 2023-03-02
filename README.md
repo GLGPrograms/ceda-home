@@ -60,10 +60,10 @@ Central unit is composed by the following components.
 External connectors:
 
 - standard C13/C14 power connector
-- 8pin DIN for keyboard
+- 5pin DIN for keyboard (custom bidirectional half duplex serial protocol)
 - DB25 communication port (supposedly a serial port)
 - DB25 printer port (supposedly a standard parallel port)
-- 5pin DIN PRNT port
+- 9pin DIN PRNT port (maybe a port for custom printer?)
 
 ## Power supply
 
