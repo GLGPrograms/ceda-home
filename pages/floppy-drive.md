@@ -3,6 +3,15 @@
 CEDA uses two 5¼" floppy drive unit.
 Both drives are manufactured by YE-DATA, model YD-480.
 
+Floppy drives are both controlled by a uPD765A Single/Double Density Floppy-Disk Controller, which can handle up to 4 drives.
+The ROM code seems able to address all 4 drives, although not physically present.
+
+## Drive board
+
+<figure>
+<img src="../assets/floppy-drive-board.jpg" width="400" />
+</figure>
+
 Each drive has few jumpers to configure its behavior, as reported in following table
 
 | Jumper name | Jumper behavior                            | is shorted?                                    |
@@ -11,6 +20,13 @@ Each drive has few jumpers to configure its behavior, as reported in following t
 | HS          | Drive enabled by the "drive select" signal | shorted                                        |
 | HM          | Drive enabled by the "motor on" signal     | not shorted                                    |
 | MX          | DS is ignored, drive is always selected    | not shorted                                    |
+
+Drive 1 has a missing resistor net in socket MT (component value on drive 0: `760-3-R150`).
+
+:warning: IDEA
+
+According to the schematic of a similar model ([YD-380](https://retrocmp.de/fdd/yd/Y-E_Data_YD-380_Maint_Sep1983.pdf)), this resistor net may be mandatory only for one drive at a time.
+Then, if only drive 1 is used, this component must be installed in the missing spot.
 
 ## Usage with x86 PC
 
@@ -38,4 +54,5 @@ Some tests were done to access drive as B drive, without success.
 
 ## References
 
-- https://www.dosdays.co.uk/topics/floppy_drives.php
+- [Floppy drives information](https://www.dosdays.co.uk/topics/floppy_drives.php), YD-480 is mentioned;
+- [Controller information](https://www.cpcwiki.eu/index.php/765_FDC).
