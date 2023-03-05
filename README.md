@@ -152,9 +152,7 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 
 | address | size  | device                       |
 | ------- | ----- | ---------------------------- |
-| 0x81    |       | GPIO - Bank switching?       |
-| 0x82    |       | GPIO                         |
-| 0x83    |       | GPIO                         |
+| 0x80    | 4     | uPD8255 (PIO/GPIO)           |
 | 0xA0    | 2     | CRTC internal registers      |
 | 0xB0    | 4     | SIO/2 Serial Peripheral      |
 | 0xC0    |       | FDC - floppy disk controller |
