@@ -20,7 +20,7 @@ A collection of resources we managed to put together.
 :warning: Please note that this project is currently work-in-progress and majority of the following resources are not complete (or at their infancy stage).
 
 - In this documentation repository:
-  - [Power supply](#power-supply)
+  - [Power supply](pages/psu.md)
   - [Motherboard](#motherboard)
   - [ROM](#rom)
   - [Memory map](#memory-map)
@@ -65,33 +65,6 @@ External connectors:
 - DB25 communication port (supposedly a serial port)
 - DB25 printer port (supposedly a standard parallel port)
 - 5pin DIN PRNT port
-
-## Power supply
-
-On the **original** PSU, wire colors are:
-
-- black -> GND
-- red -> 12V
-- yellow -> 5V
-- purple -> -12V
-
-On the power connector on the motherboard there is a key between position 7 and 8, to avoid inserting the plug backwards.
-
-- 1 -> GND
-- 2 -> GND
-- 3 -> 5V
-- 4 -> 5V
-- 5 -> -12V
-- 6 -> +12 V
-- 7 -> NC
-- EMPTY
-- 8 -> NC
-
-<figure>
-<img src="./assets/psu-connector.jpeg" width="400px" />
-<span>A modern ATX PSU can be used to power the Sanco, just swap yellow and red wires, as shown in the picture.</span>
-</figure>
-
 
 ## Motherboard
 
