@@ -167,13 +167,13 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 
 ### Memory space
 
-| base   | size   | description        |
-| ------ | ------ | ------------------ |
-| 0x0000 | 0x2000 | Software ROM       |
-| 0x2000 |        |                    |
-| 0xC000 | 0x2000 | Software ROM       |
-| 0xD000 | 0x800  | Video Frame Buffer |
-| 0xD800 |        |                    |
+| base   | size   | description                               |
+| ------ | ------ | ----------------------------------------- |
+| 0x0000 | 0x2000 | Software ROM                              |
+| 0x2000 |        |                                           |
+| 0xC000 | 0x2000 | Software ROM                              |
+| 0xD000 | 0x1000 | Video Frame Buffer (visible 2000 at time) |
+| 0xE000 |        |                                           |
 
 ### I/O
 
