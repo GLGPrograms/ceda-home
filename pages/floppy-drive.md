@@ -23,16 +23,16 @@ Each drive has few jumpers to configure its behavior, as reported in following t
 
 Drive 1 has a missing resistor net in socket MT (component value on drive 0: `760-3-R150`).
 
-:warning: IDEA
-
-According to the schematic of a similar model ([YD-380](https://retrocmp.de/fdd/yd/Y-E_Data_YD-380_Maint_Sep1983.pdf)), this resistor net may be mandatory only for one drive at a time.
-Then, if only drive 1 is used, this component must be installed in the missing spot.
+> **Warning** IDEA
+> According to the schematic of a similar model ([YD-380](https://retrocmp.de/fdd/yd/Y-E_Data_YD-380_Maint_Sep1983.pdf)), this resistor net may be mandatory only for one drive at a time.
+> Then, if only drive 1 is used, this component must be installed in the missing spot.
 
 ## Accessing by software
 
-!!! note "Motor control"
-    I'm quite sure that drive motor can be manually turned on and off, since I accidentally did this.
-    But the correct procedure is not yet documented nor even understood.
+> **Note**
+> Motor control:
+> I'm quite sure that drive motor can be manually turned on and off, since I accidentally did this.
+> But the correct procedure is not yet documented nor even understood.
 
 BIOS ROM provides an one-man-band routine to interface with the floppy drives.
 Routine is located at address `fdc_rwfs = $c19d`.
@@ -115,8 +115,9 @@ Then, if `SBE = 1`, the actual number of bytes read will be:
 | 2   | 512         | 256 + 256 * SB   |
 | 3   | 1024        | 1024 + 1024 * SB |
 
-!!! note "hypothesis"
-    To operate with sector size = 512, SB must be at least 1.
+> **Note**
+> Hypothesis:
+> To operate with sector size = 512, SB must be at least 1.
 
 ## Usage with x86 PC
 
