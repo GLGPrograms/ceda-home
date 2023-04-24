@@ -140,13 +140,13 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 
 ### Memory space
 
-| base   | size   | description                               |
-| ------ | ------ | ----------------------------------------- |
-| 0x0000 | 0x2000 | Software ROM                              |
-| 0x2000 |        |                                           |
-| 0xC000 | 0x2000 | Software ROM                              |
-| 0xD000 | 0x1000 | Video Frame Buffer (visible 2000 at time) |
-| 0xE000 |        |                                           |
+| base   | size   | default configuration                     | bank7                   |
+| ------ | ------ | ----------------------------------------- | ----------------------- |
+| 0x0000 | 0xB000 | dynamic RAM                               |                         |
+| 0xB000 | 0x1000 | Alternate RAM chip (J4-J5-J6)             |                         |
+| 0xC000 | 0x1000 | Software ROM                              |                         |
+| 0xD000 | 0x1000 | Video Frame Buffer (visible 2000 at time) | Video Attributes Buffer |
+| 0xE000 | 0x1000 | dynamic RAM                               |                         |
 
 ### I/O
 
@@ -161,6 +161,15 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 | 0xDC    |       |                              |
 | 0xDE    |       |                              |
 | 0xE0    | 4     | CTC Timer                    |
+
+## Boot sequence
+At boot, Z80 executes the instruction located at memory address `0x0`.
+
+There is a circuit that forces the BIOS ROM to be _chip enabled_ for about ~28 clock cycles at boot, so that it effectively answers at memory address `0x0`.
+
+Then, the first performed instruction is a `jp $c030`, where the ROM is actually located.
+
+We have not decoded this circuit yet.
 
 ## Contribute
 
