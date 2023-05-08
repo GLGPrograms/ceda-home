@@ -165,9 +165,19 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 | 0xE0    | 4     | CTC Timer                    |
 
 ## Boot sequence
+
 At boot, Z80 executes the instruction located at memory address `0x0`.
 
 There is a circuit that forces the BIOS ROM to be _chip enabled_ until the I/O address space is accessed for the first time (see schematics), so that the instructions sequence is the following:
+
+Since ROM is mapped in `0xC000`-`0xCFFF` address space, an appropriate circuit must keeps the ROM addressed during boot phase.
+A simpled form of this circuit is represented in circuit below.
+
+![Simplified ROM CS](assets/simplified-rom-cs.png)
+
+At startup or whenever the system is resetted (`RESET`), an SR latch keeps ROM enabled until an IO access is done (`IO_REQ`).
+Looking at the code, we can see that the first performed instruction is a `jp $c030`, which moves the execution inside the ROM address space.
+Then, the first IO write (`out`) is done to program the `uPD8255` IO interface:
 
 ```
 jp      $c030       ;[0000] c3 30 c0
@@ -175,7 +185,9 @@ ld      a,$89       ;[c030] 3e 89
 out     ($83),a     ;[c032] d3 83
 ```
 
-After this, BIOS ROM cannot be addressed at `$0000` anymore, and only answers at `$C000` .
+From that line, BIOS ROM cannot be addressed at `$0000` anymore and only answers at `$C000`.
+
+Please note that actual circuit works in inverted form, refer to the schematics for more details (see 74LS00 in L8, 74LS08 in L3 and 74LS138 in L2).
 
 ## Contribute
 
