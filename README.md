@@ -25,14 +25,16 @@ A collection of resources we managed to put together.
   - [ROM](#rom)
   - [Memory map](#memory-map)
   - [CRT Display](./pages/crt.md)
+  - [Video display](./pages/video.md)
   - [Floppy drive](pages/floppy-drive.md)
   - [Keyboard](pages/keyboard.md)
   - [External resources](pages/external-resources.md)
 - Other repositories:
-  - [Emulator](https://git.giomba.it/giomba/ceda-emu): actually you don't have a Sanco, but you want to try it anyway on your modern PC.
+  - [Emulator](https://git.giomba.it/giomba/ceda-cemu): actually you don't have a Sanco, but you want to try it anyway on your modern PC.
   - [Keyboard protocol](https://github.com/RetroNewbie/Sanco_8000): you don't have a keyboard, but you want to build your one: now you can!
   - [System ROM disassembly](https://github.com/GLGPrograms/ceda-rom-disassembly): what is the I/O routine doing? How to read the keyboard directly? How are peripherals configured?
   - [Schematics (KiCAD)](https://github.com/GLGPrograms/ceda-schematics): your Sanco is not working and you don't know where to look. Start troubleshooting the known voltages and signals.
+  - [RCX62/TRX62](https://github.com/RetroNewbie/Sanco-8000-serial): you have a Sanco with a CP/M disk, but no other software? Transfer it with this Python script.
   - [VGA Adapter](https://git.giomba.it/giomba/ceda2vga): connect the motherboard of your huge Sanco to a small VGA monitor, to avoid it taking up all your desktop space!
 
 ## How it started
@@ -165,11 +167,15 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 ## Boot sequence
 At boot, Z80 executes the instruction located at memory address `0x0`.
 
-There is a circuit that forces the BIOS ROM to be _chip enabled_ for about ~28 clock cycles at boot, so that it effectively answers at memory address `0x0`.
+There is a circuit that forces the BIOS ROM to be _chip enabled_ until the I/O address space is accessed for the first time (see schematics), so that the instructions sequence is the following:
 
-Then, the first performed instruction is a `jp $c030`, where the ROM is actually located.
+```
+jp      $c030       ;[0000] c3 30 c0
+ld      a,$89       ;[c030] 3e 89
+out     ($83),a     ;[c032] d3 83
+```
 
-We have not decoded this circuit yet.
+After this, BIOS ROM cannot be addressed at `$0000` anymore, and only answers at `$C000` .
 
 ## Contribute
 
