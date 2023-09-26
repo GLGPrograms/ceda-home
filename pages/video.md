@@ -43,22 +43,54 @@ The address space of this memory corresponds to the address space of the charact
 
 In order to enable access to attribute video memory, bank 7 should be enabled by setting bit 7 of PORTB in uPD8255.
 
-For each displayed character, a bit mask can be populated.
+For each displayed character, an attribute octet can be populated.
 
-| bit | attribute           |
-| --- | ------------------- |
-| 0   | invert              |
-| 1   | blink               |
-| 2   |                     |
-| 3   | stretch             |
-| 4   | underline           |
-| 5   | blink and underline |
-| 6   | hide (?)            |
-| 7   |                     |
+Attribute octet:
+```
++---+---+---+---+---+---+---+---+
+| 7 |   index   | 3 | 2 | 1 | 0 |
++---+---+---+---+---+---+---+---+
+```
 
-### Stretch
-Stretch attribute makes each character 2x wider.
+| bit | attribute          | description      |
+| --- | ------------------ | ---------------- |
+| 0   | invert             |                  |
+| 1   | blink              |                  |
+| 2   | cursor?            | TODO             |
+| 3   | horizontal stretch |                  |
+| 4-6 | attribute index    | (see below)      |
+| 7   | custom attribute   | to EXT connector |
 
-This is accomplished commanding the _chip enable_ pin of the pixel shift register IC at half the pixel clock.
+Attribute index (attribute octet, bits [6:4]):
 
-Thus, in stretch mode, characters in even columns always overwrite the character in the corresponding odd columns to their right.
+| value | description                                                  |
+| ----- | ------------------------------------------------------------ |
+| `000` | plain / no attribute                                         |
+| `001` | underline (13-th segment of the gliph)                       |
+| `010` | blinking underline                                           |
+| `011` | overline                                                     |
+| `100` | hide                                                         |
+| `101` | underline and overline (0-th and 13-th segment)              |
+| `110` | vertical stretch (upper half, segment 0-6, don't show 7)     |
+| `111` | vertical stretch (lower half, segment 7-13, don't show rest) |
+
+Attribute index is used to index the 28L22 ROM in J12, which contains driving signals for the blinking, underlining and show hardware circuit.
+
+(Not clear what CRTC RA4 does, yet: I expect it to always be 0)
+
+### Horizontal stretch
+Horizontal stretch attribute makes each character 2x wider.
+
+This is accomplished commanding the _chip enable_ pin of the pixel shift register at half the pixel clock (74LS166 in J14).
+
+Thus, in horizontal stretch mode, characters in even columns always overwrite the character in the corresponding odd columns to their right.
+
+### Vertical stretch
+Vertical stretch makes each character (almost) 2x taller.
+
+This is accomplished indexing the char ROM (2732) via the glue logic ROM (28L22): for each char row address R, the glue logic passes R/2 to the char ROM.
+
+In order to display the full character, it has to be placed twice, at the same column but in two different (adjacent) rows on the character video RAM matrix.
+Then, in the attribute video RAM matrix, 0x60 must be written for the upper half, and 0x70 for the lower half.
+
+For unclear reasons, the rows 14-15 of each char are discarded.
