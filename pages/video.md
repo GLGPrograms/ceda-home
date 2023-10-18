@@ -12,6 +12,11 @@ Bank 7's name comes from the corresponding GPIO bit that is set/reset in order t
 
 At boot, bank 7 is disabled (eg. character video memory is enabled).
 
+Video memory is concurrently accessed by the Z80 and the CRTC.
+Moreover, they have different clocks (CLK=4 MHz and CRTC_CLK=1.875 MHz respectively), not even in phase.
+If the Z80 has to access video memory, it must "book" a read or write operation through an handshake circuit.
+See [video memory access arbitration](#video-memory-access-arbitration)
+
 ## Character video memory
 
 Character video memory is located at 0xD000 and is 0x1000 bytes long (4096).
@@ -94,3 +99,29 @@ In order to display the full character, it has to be placed twice, at the same c
 Then, in the attribute video RAM matrix, 0x60 must be written for the upper half, and 0x70 for the lower half.
 
 For unclear reasons, the rows 14-15 of each char are discarded.
+
+## Video memory access arbitration
+
+![Read arbitration waveform](../assets/arbitration-circuit.png)
+
+The MUXSEL signal (i.e. /CRTC_CLK) is used to establish bus ownership:
+
+- When low level, access is reserved to the CRTC and one character is loaded from both memories to be used in video memory pipeline.
+- When high level, access may be done by the Z80, if needed.
+The objective of the syncronization circuit is to put the Z80 in WAIT state until a full memory access slot is available (i.e. low level of CRTC_CLK).
+
+  1. The Z80 sets the address in `Dxxx`` area and issues /MREQ;
+  2. The memory access request is latched in register E14A, which puts the Z80 in WAIT state;
+  3. The WAIT signal unlocks E14B, which can now sample /RD or /WR on rising edge of MUXSEL and assert the VRAM CS;
+  4. Falling edge of MUXSEL ends the memory transaction, removes the WAIT state and deasserts the VRAM CS.
+
+  Please note that during the Z80 access cycle the CPU is always in WAIT state.
+  When writing, the Z80 data bus is stable and is directly sampled by the memory.
+  When reading, the data from the video memory is temporary stored in a buffer register (F12). When the Z80 wakes up from WAIT, it can read data from there even if its time slot has expired.
+
+A possible waveform of a memory access is shown in the following diagrams.
+We tried to highlight the handshaking operations by using blue arrows for asynchronous transitions, and red cross/red circle for synchronous samplings.
+For the sake of simplicity, some signals are omitted.
+
+![Read arbitration waveform](../assets/read-arbitration.png)
+![Write arbitration waveform](../assets/write-arbitration.png)
