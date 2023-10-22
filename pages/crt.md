@@ -10,20 +10,20 @@ All signals are digital TTL levels (0-5V), which are then interpreted by the CRT
 
 ## Display port connector (INCRT) pinout
 
-| #  | signal   | color  |
-| -- | ------   | -----  |
-|  1 | NC       |        |
-|  2 | GND      | black  |
-|  3 | NC       |        |
-|  4 | PIXELS   | brown  |
-|  5 | NC       |        |
-|  6 | NC       |        |
-|  7 | VSYNC    | violet |
-|  8 | HSYNC    | gray   |
-|  9 | NC       |        |
-| 10 | GND      | black  |
-| 11 | CONTRAST | green  |
-| 12 | CONTRAST | blue   |
+| #   | signal   | color  |
+| --- | -------- | ------ |
+| 1   | NC       |        |
+| 2   | GND      | black  |
+| 3   | NC       |        |
+| 4   | PIXELS   | brown  |
+| 5   | NC       |        |
+| 6   | NC       |        |
+| 7   | VSYNC    | violet |
+| 8   | HSYNC    | gray   |
+| 9   | NC       |        |
+| 10  | GND      | black  |
+| 11  | CONTRAST | green  |
+| 12  | CONTRAST | blue   |
 
 ## Video signal
 
@@ -47,6 +47,35 @@ If you want to use an external monitor, some circuit with frame buffering capabi
 - [HSYNC](../assets/hsync-0.png)
 - [HSYNC detail](../assets/hsync-1.png)
 - [Back Porch](../assets/backporch.png)
+
+## Memory access
+Being the real-time chip which handles the image on the screen, the CRTC has higher priority in accessing the video RAM, and can temporarily halt the Z80 CPU when they both try to access it.
+
+Example performance test code:
+```asm
+_performance_test:
+    in  a,($A0)             ; toggle CRTC /CS
+                            ; used just to measure the spike
+                            ; and determine the cycle loop
+                            ; with an oscilloscope
+
+    ld  de,$0100            ; repeat cycle 256 times
+loop:
+    ld  a,($2000)           ; read from normal memory or video memory
+                            ; takes 13 cycles for normal memory
+                            ; takes ~15 cycles for video memory
+
+    dec de                  ; 6
+    ld  a,d                 ; 4
+    or  e                   ; 4
+    jp  nz,loop             ; 10
+
+    jp  _performance_test
+```
+
+Given the Z80 running at 4MHz:
+- loop takes 2.37 ms when reading from `$2000` (a normal address in memory).
+- loop takes 2.50 ms when reading from `$d000` (an address in video memory).
 
 ## Related projects
 
