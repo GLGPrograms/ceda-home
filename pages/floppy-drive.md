@@ -41,22 +41,21 @@ The name was given by us during reverse engineering process and was inspired by 
 `fdc_rwfs` routine performs different operations depending on the arguments, passed from a, bc, de, hl registers.
 The routine changes the content of three memory blocks.
 
-First block is the **descriptor of operation** and has a fixed location at `$ffb7` and size of 9 bytes.
+First block is the **descriptor of operation** and has a fixed location at `$ffb8` and size of 9 bytes.
 This area is mostly populated by the data passed as argument (arg reg column).
 
 | Arg reg | Offset | Bit   | Description                                                                              |
 | ------- | ------ | ----- | ---------------------------------------------------------------------------------------- |
-| -       | 0      | [3:0] | Bitfield of already accessed drives. Initialized by BIOS to 0                            |
-| a       | 1      | [1:0] | `SSF`: Sector size factor. See [below](#bytes-per-sector) for conversion to actual bytes |
-| c       | 2      | [2]   | Head number, i.e. which side of a double side floppy must be used                        |
-| c       | 2      | [1:0] | Addressed drive (0 to 3)                                                                 |
-| b       | 3      | [7:4] | [Operation command](#operation-command): read, write, seek, format, recalibrate          |
-| b       | 3      | [3:0] | `SB`: sector burst. See [below](#bytes-per-sector)                                       |
-| e       | 4      | [7]   | `SBE`: sector burst enable, see [below](#bytes-per-sector)                               |
-| e       | 4      | [6:0] | Sector (record) number, 0 to 25                                                          |
-| d       | 5      | -     | Track (cylinder) number, 0 to 76                                                         |
-| hl      | 6-7    | -     | Address of the data buffer for read/write/format operations                              |
-| -       | 8      | -     | Number of retry for read/write/format operations                                         |
+| a       | 0      | [1:0] | `SSF`: Sector size factor. See [below](#bytes-per-sector) for conversion to actual bytes |
+| c       | 1      | [2]   | Head number, i.e. which side of a double side floppy must be used                        |
+| c       | 1      | [1:0] | Addressed drive (0 to 3)                                                                 |
+| b       | 2      | [7:4] | [Operation command](#operation-command): read, write, seek, format, recalibrate          |
+| b       | 2      | [3:0] | `SB`: sector burst. See [below](#bytes-per-sector)                                       |
+| e       | 3      | [7]   | `SBE`: sector burst enable, see [below](#bytes-per-sector)                               |
+| e       | 3      | [6:0] | Sector (record) number, 0 to 25                                                          |
+| d       | 4      | -     | Track (cylinder) number, 0 to 76                                                         |
+| hl      | 5-6    | -     | Address of the data buffer for read/write/format operations                              |
+| -       | 7      | -     | Number of retry for read/write/format operations                                         |
 
 Second block is the **data buffer**, which will contain the actual data read or written from the floppy.
 A particular usage is made when format operation is started.
@@ -74,15 +73,16 @@ A single **id field** is 4 byte long:
 Last block is a **return block**, which has a fixed location at `$ffc0` and size of 7 bytes.
 It contains the return value from `fdc_rwfs` routine.
 
-| Offset | Description               |
-| ------ | ------------------------- |
-| 0      | Status Register 0         |
-| 1      | Status Register 1         |
-| 2      | Status Register 2         |
-| 3      | Accessed track number     |
-| 4      | Accessed head (i.e. side) |
-| 5      | Accessed sector           |
-| 6      | Number of bytes moved     |
+| Offset | Description                                                   |
+| ------ | ------------------------------------------------------------- |
+| 0      | Status Register 0                                             |
+| 1      | Status Register 1                                             |
+| 2      | Status Register 2                                             |
+| 3      | Accessed track number                                         |
+| 4      | Accessed head (i.e. side)                                     |
+| 5      | Accessed sector                                               |
+| 6      | Number of bytes moved                                         |
+| 7      | Bitfield of already accessed drives. Initialized by BIOS to 0 |
 
 See the datasheet for explanation of Status Register content.
 
