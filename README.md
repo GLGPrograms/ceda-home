@@ -1,5 +1,7 @@
 # Sanco 8003
 
+![Our Sanco 8003 after restoration, running our demo program](./assets/ceda-better.jpg)
+
 [Sanco 8003](https://www.old-computers.com/museum/computer.asp?st=1&c=1069) is a Z80 based French personal computer, from year 1982.
 
 Aim of this page is to collect as much information as possible about this computer, and to become a centralized reference hub for this computer.
