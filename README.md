@@ -145,13 +145,14 @@ We suspect that this ROM is used as glue logic to mask or switch certain parts o
 
 ### Memory space
 
-| base   | size   | B0 = 0, B7 = 0                            | B0 = 0, B7 = 1                | B0 = 1      |
-| ------ | ------ | ----------------------------------------- | ----------------------------- | ----------- |
-| 0x0000 | 0xB000 | dynamic RAM                               | dynamic RAM                   | dynamic RAM |
-| 0xB000 | 0x1000 | Alternate RAM chip (J4-J5-J6)             | Alternate RAM chip (J4-J5-J6) | dynamic RAM |
-| 0xC000 | 0x1000 | Software ROM                              | Software ROM                  | dynamic RAM |
-| 0xD000 | 0x1000 | Video Frame Buffer (visible 2000 at time) | Video Attributes Buffer       | dynamic RAM |
-| 0xE000 | 0x1000 | dynamic RAM                               | dynamic RAM                   | dynamic RAM |
+| base   | size   | B0 = 0, B7 = 0                            | B0 = 0, B7 = 1                   | B0 = 1      |
+| ------ | ------ | ----------------------------------------- | -------------------------------- | ----------- |
+| 0x0000 | 0xB000 | dynamic RAM                               | dynamic RAM                      | dynamic RAM |
+| 0xB000 | 0x1000 | Alternate RAM chip (J4-J5-J6)             | Alternate RAM chip (J4-J5-J6)    | dynamic RAM |
+| 0xC000 | 0x1000 | Software ROM                              | Software ROM                     | dynamic RAM |
+| 0xD000 | 0x0800 | Video Frame Buffer (visible 2000 at time) | Video Attributes Buffer          | dynamic RAM |
+| 0xD800 | 0x0800 | Video Frame Buffer (mirror)               | Video Attributes Buffer (mirror) | dynamic RAM |
+| 0xE000 | 0x1000 | dynamic RAM                               | dynamic RAM                      | dynamic RAM |
 
 The system implements a bank switching system to be able to fully access both the whole 64kB dynamic RAM space and the other memory ICs.
 The bank switching is handled through port B of `uPD8255`:
