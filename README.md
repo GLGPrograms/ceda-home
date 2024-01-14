@@ -39,6 +39,7 @@ A collection of resources we managed to put together.
   - [Schematics (KiCAD)](https://github.com/GLGPrograms/ceda-schematics): your Sanco is not working and you don't know where to look. Start troubleshooting the known voltages and signals.
   - [RCX62/TRX62](https://github.com/RetroNewbie/Sanco-8000-serial): you have a Sanco with a CP/M disk, but no other software? Transfer it with this Python script.
   - [VGA Adapter](https://git.giomba.it/giomba/ceda2vga): connect the motherboard of your huge Sanco to a small VGA monitor, to avoid it taking up all your desktop space!
+  - [CP/M disk](https://github.com/GLGPrograms/ceda-cpm): learn what's inside the operating system disk, or create a custom copy.
 
 ## How it started
 
