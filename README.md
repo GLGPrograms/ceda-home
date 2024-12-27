@@ -32,14 +32,20 @@ A collection of resources we managed to put together.
   - [Keyboard](pages/keyboard.md)
   - [External resources](pages/external-resources.md)
 - Other repositories:
-  - [Emulator](https://github.com/GLGPrograms/ceda-cemu): actually you don't have a Sanco, but you want to try it anyway on your modern PC.
-  - [Keyboard protocol](https://github.com/RetroNewbie/Sanco_8000): you don't have a keyboard, but you want to build your one: now you can!
-  - [Keyboard adapter](https://github.com/GLGPrograms/ceda-ps2-keyboard/): you don't have a keyboard, and don't want to build your own adapter: now you can use ours!
-  - [System ROM disassembly](https://github.com/GLGPrograms/ceda-rom-disassembly): what is the I/O routine doing? How to read the keyboard directly? How are peripherals configured?
-  - [Schematics (KiCAD)](https://github.com/GLGPrograms/ceda-schematics): your Sanco is not working and you don't know where to look. Start troubleshooting the known voltages and signals.
-  - [RCX62/TRX62](https://github.com/RetroNewbie/Sanco-8000-serial): you have a Sanco with a CP/M disk, but no other software? Transfer it with this Python script.
-  - [VGA Adapter](https://git.giomba.it/giomba/ceda2vga): connect the motherboard of your huge Sanco to a small VGA monitor, to avoid it taking up all your desktop space!
-  - [CP/M disk](https://github.com/GLGPrograms/ceda-cpm): learn what's inside the operating system disk, or create a custom copy.
+  - [ceda-cemu](https://github.com/GLGPrograms/ceda-cemu): actually you don't have a Sanco, but you want to try it anyway on your modern PC with an emulator.
+  - Hardware adapters:
+    - [ceda2vga](https://git.giomba.it/giomba/ceda2vga): connect the motherboard of your huge Sanco to a small VGA monitor, to avoid it taking up all your desktop space!
+    - [Keyboard protocol](https://github.com/RetroNewbie/Sanco_8000): you don't have a keyboard, but you want to build your one: now you can!
+    - [ceda-ps2-keyboard](https://github.com/GLGPrograms/ceda-ps2-keyboard/): you don't have a keyboard, and don't want to build your own adapter: now you can use ours!
+  - Utilities:
+    - [ceda-utils](https://github.com/GLGPrograms/ceda-utils): you have a Sanco, but no software disk? Or you need some basic util? Have a look here.
+    - [RCX62/TRX62](https://github.com/RetroNewbie/Sanco-8000-serial): you have a Sanco with a CP/M disk, but no other software? Transfer it with this Python script.
+  - Documentation
+    - [System ROM disassembly](https://github.com/GLGPrograms/ceda-rom-disassembly): what is the I/O routine doing? How to read the keyboard directly? How are peripherals configured?
+    - [Schematics (KiCAD)](https://github.com/GLGPrograms/ceda-schematics): your Sanco is not working and you don't know where to look. Start troubleshooting the known voltages and signals.
+    - [CP/M disk](https://github.com/GLGPrograms/ceda-cpm): learn what's inside the operating system disk, or create a custom copy.
+  - Mods
+    - [CGE](https://github.com/GLGPrograms/ceda-img): character generator extended ROM: ASCII chars on a green phosphor CRT are fun, but intermixed text and images is better!
 
 ## How it started
 
